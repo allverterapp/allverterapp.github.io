@@ -1,41 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>allverter - Support & Legal</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 700px; margin: 0 auto; padding: 60px 20px; text-align: center; background-color: #f9f9f9; }
-        .card { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
-        h1 { color: #2c3e50; font-size: 2.5em; margin-bottom: 10px; }
-        p { color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px; }
-        .links { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
-        .btn { display: inline-block; padding: 12px 30px; background-color: #55efc4; color: #333; text-decoration: none; border-radius: 8px; font-weight: bold; transition: background 0.2s; }
-        .btn:hover { background-color: #00b894; }
-        .email { color: #3498db; text-decoration: none; font-weight: bold; }
-        .footer { margin-top: 50px; font-size: 0.9em; color: #bdc3c7; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>allverter - Support & Legal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-1:#d7f5ec;
+    --bg-2:#d6e3f8;
+    --hero-1:#e3f8ef;
+    --hero-2:#eaf4e8;
+    --card:#ffffff;
+    --teal:#14b8a6;
+    --teal-deep:#0f8f80;
+    --teal-dark:#11433e;
+    --ink:#1f2d3d;
+    --muted:#8aa0a6;
+    --badge-bg:#e3f7f0;
+    --badge-text:#129084;
+    --divider:#edf3f1;
+    --shadow-rest:0 4px 16px rgba(15,65,60,.08);
+    --shadow-hover:0 10px 26px rgba(15,65,60,.14);
+    --radius-lg:20px;
+    --radius-md:16px;
+    --radius-sm:12px;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:linear-gradient(135deg,var(--bg-1) 0%,var(--bg-2) 100%);
+    display:flex;
+    justify-content:center;
+    padding:56px 20px 64px;
+  }
+
+  .page{
+    width:100%;
+    max-width:560px;
+  }
+
+  /* logo lockup */
+  .brand{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    margin-bottom:28px;
+  }
+  .brand svg{ width:38px; height:38px; flex-shrink:0; }
+  .brand span{
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    font-size:1.5rem;
+    color:var(--ink);
+    letter-spacing:-0.02em;
+  }
+
+  /* hero card */
+  .hero{
+    background:linear-gradient(135deg,var(--hero-1),var(--hero-2));
+    border-radius:var(--radius-lg);
+    padding:36px 32px;
+    text-align:center;
+    margin-bottom:24px;
+  }
+  .hero h1{
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    font-size:1.8rem;
+    color:var(--teal-dark);
+    margin:0 0 10px;
+    letter-spacing:-0.01em;
+  }
+  .hero p{
+    margin:0;
+    color:#5f7a76;
+    font-size:1rem;
+    line-height:1.55;
+  }
+
+  /* section list */
+  .list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+
+  .card-row{
+    background:var(--card);
+    border-radius:var(--radius-md);
+    box-shadow:var(--shadow-rest);
+    padding:22px 24px;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+
+  a.card-row{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    text-decoration:none;
+    color:inherit;
+  }
+
+  a.card-row:hover,
+  a.card-row:focus-visible{
+    transform:translateY(-2px);
+    box-shadow:var(--shadow-hover);
+  }
+  a.card-row:focus-visible{
+    outline:2px solid var(--teal);
+    outline-offset:2px;
+  }
+
+  .badge{
+    flex-shrink:0;
+    width:46px;
+    height:46px;
+    border-radius:var(--radius-sm);
+    background:var(--badge-bg);
+    color:var(--badge-text);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:.72rem;
+    letter-spacing:.03em;
+  }
+
+  .row-title{
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    color:var(--ink);
+  }
+
+  .row-sub{
+    margin:2px 0 0;
+    font-size:.88rem;
+    color:var(--muted);
+  }
+
+  .row-text{
+    flex:1;
+    min-width:0;
+  }
+
+  .chevron{
+    flex-shrink:0;
+    color:var(--muted);
+    font-size:1.3rem;
+    transition:transform .18s ease;
+  }
+  a.card-row:hover .chevron{
+    transform:translateX(3px);
+    color:var(--teal);
+  }
+
+  /* contact support card (non-link, has its own internal structure) */
+  .contact-head{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:16px;
+  }
+  .contact-copy{
+    margin:0 0 18px;
+    font-size:.92rem;
+    color:#5b6e6b;
+    line-height:1.55;
+  }
+  .email-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:fit-content;
+    margin:0 auto;
+    gap:8px;
+    background:var(--teal);
+    color:#ffffff;
+    text-decoration:none;
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:.92rem;
+    padding:12px 22px;
+    border-radius:var(--radius-sm);
+    transition:background .18s ease, transform .18s ease;
+}
+  .email-btn:hover,
+  .email-btn:focus-visible{
+    background:var(--teal-deep);
+    transform:translateY(-1px);
+  }
+  .email-btn:focus-visible{
+    outline:2px solid var(--teal-dark);
+    outline-offset:2px;
+  }
+
+  .section-label{
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:.78rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:30px 4px 12px;
+  }
+  .section-label:first-of-type{ margin-top:6px; }
+
+  footer{
+    text-align:center;
+    margin-top:40px;
+    font-size:.82rem;
+    color:#a7b8b5;
+  }
+
+  @media (max-width:420px){
+    body{ padding:40px 14px 48px; }
+    .hero{ padding:28px 22px; }
+    .card-row{ padding:18px 18px; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{ transition:none !important; }
+  }
+</style>
 </head>
 <body>
-    <div class="card">
-        <h1>Allverter</h1>
-        <p>Welcome to the official support and information page for Allverter: Convert anything, fast!</p>
-        
-        <div style="margin-bottom: 40px;">
-            <h3>Contact Support</h3>
-            <p>For any questions, issues, or feedback, please reach out to us at:</p>
-            <a href="mailto:allverterapp@gmail.com" class="email">allverterapp@gmail.com</a>
-        </div>
+  <div class="page">
 
-        <div class="links">
-            <h3>Legal Documents</h3>
-            <a href="privacy.html" class="btn">Privacy Policy</a>
-            <a href="terms.html" class="btn">Terms of Use</a>
+    <div class="brand">
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="48" y2="48">
+            <stop offset="0" stop-color="#2dd9c2"/>
+            <stop offset="1" stop-color="#0fa593"/>
+          </linearGradient>
+        </defs>
+        <circle cx="24" cy="24" r="24" fill="url(#g)"/>
+        <path d="M15 21a9 9 0 0 1 16.6-4.4" stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M30 14l2 4-4.4.6" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M33 27a9 9 0 0 1-16.6 4.4" stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M18 34l-2-4 4.4-.6" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <span>allverter</span>
+    </div>
+
+    <div class="hero">
+      <h1>Allverter</h1>
+      <p>Welcome to the official support and information page for Allverter: Convert anything, fast!.</p>
+    </div>
+
+    <div class="section-label">Support</div>
+    <div class="list">
+      <div class="card-row">
+        <div class="contact-head">
+          <div class="badge">SUP</div>
+          <div class="row-text">
+            <div class="row-title">Contact Support</div>
+          </div>
         </div>
+        <p class="contact-copy">For any questions, issues, or feedback, please reach out to us at:</p>
+        <a class="email-btn" href="mailto:allverterapp@gmail.com">
+          allverterapp@gmail.com
+        </a>
+      </div>
     </div>
-    
-    <div class="footer">
-        <p>&copy; 2026 Allverter - All rights reserved.</p>
+
+    <div class="section-label">Legal Documents</div>
+    <div class="list">
+      <a class="card-row" href="privacy.html">
+        <div class="badge">PRI</div>
+        <div class="row-text">
+          <div class="row-title">Privacy Policy</div>
+        </div>
+        <div class="chevron">&#8250;</div>
+      </a>
+      <a class="card-row" href="terms.html">
+        <div class="badge">TOS</div>
+        <div class="row-text">
+          <div class="row-title">Terms of Use</div>
+        </div>
+        <div class="chevron">&#8250;</div>
+      </a>
     </div>
+
+    <footer>&copy; 2026 Allverter - All rights reserved.</footer>
+
+  </div>
 </body>
 </html>
