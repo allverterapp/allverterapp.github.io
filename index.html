@@ -1,1 +1,461 @@
+!DOCTYPE html
+html lang=en
+head
+    meta charset=UTF-8
+    meta name=viewport content=width=device-width, initial-scale=1.0
+    titleFANATIKO - Football Quiztitle
+    link href=httpsfonts.googleapis.comcss2family=Anton&family=Oswaldwght@400;600&family=Barlowwght@400;500;700&display=swap rel=stylesheet
 
+    style
+        root {
+            --green-dark #1a4a1f;
+            --green-mid #2d7a35;
+            --green-field #3a9e44;
+            --green-light #4cc155;
+            --white #ffffff;
+            --yellow #f5e642;
+            --yellow-warm #ffd700;
+            --black #0d0d0d;
+            --gray #a0a0a0;
+        }
+
+         {
+            margin 0;
+            padding 0;
+            box-sizing border-box;
+        }
+
+        body {
+            font-family 'Barlow', sans-serif;
+            background-color var(--green-dark);
+            color var(--white);
+            min-height 100vh;
+            overflow-x hidden;
+            position relative;
+        }
+
+         === STADIUM LIGHTS (top corners) === 
+        .stadium-light {
+            position fixed;
+            width 600px;
+            height 600px;
+            border-radius 50%;
+            filter blur(120px);
+            pointer-events none;
+            z-index 0;
+            opacity 0.25;
+        }
+        .light-tl {
+            top -200px; left -200px;
+            background radial-gradient(circle, #c8ff00 0%, transparent 70%);
+            animation lightPulse 4s ease-in-out infinite;
+        }
+        .light-tr {
+            top -200px; right -200px;
+            background radial-gradient(circle, #c8ff00 0%, transparent 70%);
+            animation lightPulse 4s ease-in-out infinite 2s;
+        }
+        @keyframes lightPulse {
+            0%, 100% { opacity 0.2; }
+            50% { opacity 0.35; }
+        }
+
+         === GRASS STRIPES BACKGROUND === 
+        .grass-bg {
+            position fixed;
+            inset 0;
+            background repeating-linear-gradient(
+                180deg,
+                rgba(42, 110, 50, 0.4) 0px,
+                rgba(42, 110, 50, 0.4) 60px,
+                rgba(30, 80, 36, 0.4) 60px,
+                rgba(30, 80, 36, 0.4) 120px
+            );
+            z-index 0;
+            pointer-events none;
+        }
+
+         === MAIN WRAPPER === 
+        .wrapper {
+            position relative;
+            z-index 1;
+            display flex;
+            flex-direction column;
+            align-items center;
+            justify-content center;
+            min-height 100vh;
+            padding 40px 20px;
+            padding-top 58px;
+        }
+
+         === FIELD LINES (decorative) === 
+        .field-arc {
+            position absolute;
+            top 50%;
+            left 50%;
+            transform translate(-50%, -50%);
+            width 700px;
+            height 700px;
+            border-radius 50%;
+            border 2px solid rgba(255, 255, 255, 0.07);
+            pointer-events none;
+        }
+        .field-arc-2 {
+            width 500px;
+            height 500px;
+            border-color rgba(255, 255, 255, 0.05);
+        }
+
+         === CARD === 
+        .card {
+            background rgba(10, 30, 12, 0.75);
+            border 2px solid rgba(255, 255, 255, 0.12);
+            border-radius 24px;
+            padding 56px 44px 48px;
+            max-width 480px;
+            width 100%;
+            text-align center;
+            position relative;
+            backdrop-filter blur(20px);
+            -webkit-backdrop-filter blur(20px);
+            box-shadow
+                0 0 0 1px rgba(255,255,255,0.04),
+                0 30px 80px rgba(0,0,0,0.5),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            animation cardIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        @keyframes cardIn {
+            from { opacity 0; transform translateY(32px); }
+            to   { opacity 1; transform translateY(0); }
+        }
+
+         === TOP BADGE === 
+        .top-badge {
+            position absolute;
+            top -14px;
+            left 50%;
+            transform translateX(-50%);
+            background var(--yellow);
+            color var(--black);
+            font-family 'Anton', sans-serif;
+            font-size 0.75em;
+            letter-spacing 3px;
+            padding 6px 20px;
+            border-radius 100px;
+            text-transform uppercase;
+            white-space nowrap;
+            box-shadow 0 4px 16px rgba(245, 230, 66, 0.4);
+        }
+
+         === BALL ICON === 
+        .ball-icon {
+            font-size 3.5em;
+            margin-bottom 12px;
+            display block;
+            animation ballSpin 8s linear infinite;
+            filter drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+        }
+        @keyframes ballSpin {
+            from { transform rotate(0deg); }
+            to   { transform rotate(360deg); }
+        }
+
+         === LOGO === 
+        h1 {
+            font-family 'Anton', sans-serif;
+            font-size 4.2em;
+            letter-spacing 4px;
+            line-height 1;
+            text-transform uppercase;
+            color var(--white);
+            text-shadow
+                0 0 40px rgba(76, 193, 85, 0.5),
+                0 4px 0 rgba(0,0,0,0.3);
+            margin-bottom 4px;
+        }
+
+        .logo-sub {
+            font-family 'Oswald', sans-serif;
+            font-size 0.9em;
+            letter-spacing 6px;
+            text-transform uppercase;
+            color var(--green-light);
+            font-weight 400;
+            margin-bottom 28px;
+        }
+
+         === DIVIDER === 
+        .divider {
+            display flex;
+            align-items center;
+            gap 12px;
+            margin 24px 0;
+            opacity 0.35;
+        }
+        .dividerbefore, .dividerafter {
+            content '';
+            flex 1;
+            height 1px;
+            background var(--white);
+        }
+        .divider-dot {
+            width 6px;
+            height 6px;
+            border-radius 50%;
+            background var(--white);
+        }
+
+         === INTRO TEXT === 
+        .intro-text {
+            color rgba(255,255,255,0.75);
+            font-size 1.05em;
+            line-height 1.6;
+            font-weight 400;
+            margin-bottom 4px;
+        }
+
+         === SECTION HEADING === 
+        .section-label {
+            font-family 'Oswald', sans-serif;
+            font-size 0.75em;
+            letter-spacing 4px;
+            text-transform uppercase;
+            color var(--green-light);
+            margin-top 32px;
+            margin-bottom 14px;
+            font-weight 600;
+        }
+
+         === EMAIL LINK === 
+        .contact-box {
+            background rgba(255,255,255,0.05);
+            border 1px solid rgba(255,255,255,0.1);
+            border-radius 14px;
+            padding 18px 20px;
+        }
+
+        .contact-label {
+            font-size 0.85em;
+            color rgba(255,255,255,0.5);
+            margin-bottom 8px;
+            font-weight 500;
+            letter-spacing 0.5px;
+        }
+
+        .email-link {
+            color var(--yellow);
+            text-decoration none;
+            font-family 'Oswald', sans-serif;
+            font-size 1.15em;
+            font-weight 600;
+            letter-spacing 0.5px;
+            display inline-flex;
+            align-items center;
+            gap 8px;
+            transition color 0.2s, gap 0.2s;
+        }
+        .email-linkhover {
+            color var(--white);
+            gap 12px;
+        }
+        .email-linkbefore {
+            content '✉';
+            font-size 0.9em;
+        }
+
+         === LEGAL BUTTONS === 
+        .links {
+            display flex;
+            flex-direction column;
+            gap 12px;
+            margin-top 4px;
+        }
+
+        .btn {
+            display flex;
+            align-items center;
+            justify-content space-between;
+            padding 17px 22px;
+            background rgba(255, 255, 255, 0.06);
+            border 1px solid rgba(255, 255, 255, 0.12);
+            color var(--white);
+            text-decoration none;
+            border-radius 14px;
+            font-family 'Oswald', sans-serif;
+            font-size 1.05em;
+            font-weight 600;
+            letter-spacing 1px;
+            text-transform uppercase;
+            transition all 0.25s ease;
+            position relative;
+            overflow hidden;
+        }
+
+        .btnbefore {
+            content '';
+            position absolute;
+            left 0; top 0; bottom 0;
+            width 4px;
+            background var(--green-light);
+            border-radius 4px 0 0 4px;
+            transition width 0.25s ease;
+        }
+
+        .btnhover {
+            background rgba(76, 193, 85, 0.15);
+            border-color rgba(76, 193, 85, 0.4);
+            transform translateX(4px);
+            box-shadow 0 8px 24px rgba(0,0,0,0.3);
+        }
+
+        .btnhoverbefore {
+            width 6px;
+        }
+
+        .btn-arrow {
+            font-size 1.1em;
+            opacity 0.6;
+            transition opacity 0.25s, transform 0.25s;
+        }
+        .btnhover .btn-arrow {
+            opacity 1;
+            transform translateX(4px);
+        }
+
+         === FOOTER === 
+        .footer {
+            margin-top 36px;
+            font-size 0.82em;
+            color rgba(255,255,255,0.3);
+            font-weight 400;
+            letter-spacing 0.5px;
+        }
+
+         === SCORE TICKER (decorative top strip) === 
+        .ticker-wrap {
+            position fixed;
+            top 0;
+            left 0;
+            right 0;
+            height 36px;
+            background rgba(0, 0, 0, 0.5);
+            border-bottom 1px solid rgba(255,255,255,0.06);
+            overflow hidden;
+            z-index 10;
+            display flex;
+            align-items center;
+        }
+
+        .ticker-inner {
+            display flex;
+            gap 60px;
+            animation tickerScroll 20s linear infinite;
+            white-space nowrap;
+            font-family 'Oswald', sans-serif;
+            font-size 0.72em;
+            font-weight 600;
+            letter-spacing 1.5px;
+            color rgba(255,255,255,0.4);
+        }
+
+        .ticker-inner span.goal {
+            color var(--yellow);
+        }
+
+        @keyframes tickerScroll {
+            from { transform translateX(0); }
+            to   { transform translateX(-50%); }
+        }
+
+         === BOTTOM GRASS STRIP === 
+        .bottom-strip {
+            position fixed;
+            bottom 0;
+            left 0;
+            right 0;
+            height 6px;
+            background linear-gradient(90deg, var(--green-dark), var(--green-field), var(--green-light), var(--green-field), var(--green-dark));
+        }
+
+        @media (max-width 480px) {
+            .card {
+                padding 44px 28px 38px;
+            }
+            h1 { font-size 3.2em; }
+        }
+    style
+head
+body
+
+    !-- Stadium ambiance --
+    div class=stadium-light light-tldiv
+    div class=stadium-light light-trdiv
+    div class=grass-bgdiv
+
+    !-- Score ticker --
+    div class=ticker-wrap
+        div class=ticker-inner
+            span⚽ FANATIKO FOOTBALL QUIZspan
+            span class=goal★ PROVE YOUR KNOWLEDGEspan
+            span🏆 BECOME THE ULTIMATE FANspan
+            span class=goal★ CHALLENGE YOUR RIVALSspan
+            span⚽ FANATIKO FOOTBALL QUIZspan
+            span class=goal★ PROVE YOUR KNOWLEDGEspan
+            span🏆 BECOME THE ULTIMATE FANspan
+            span class=goal★ CHALLENGE YOUR RIVALSspan
+        div
+    div
+
+    !-- Main content --
+    div class=wrapper
+
+        !-- Field circle decorations --
+        div class=field-arcdiv
+        div class=field-arc field-arc-2div
+
+        div class=card
+
+            span class=top-badgeOfficial Support Pagespan
+
+            span class=ball-icon⚽span
+            h1FANATIKOh1
+            div class=logo-subFootball Quizdiv
+
+            p class=intro-text
+                Welcome to the official support and information page for Fanatiko Football Quiz.
+            p
+
+            div class=dividerspan class=divider-dotspandiv
+
+            !-- Contact --
+            div class=section-labelContact Supportdiv
+            div class=contact-box
+                p class=contact-labelFor any questions, issues, or feedbackp
+                a href=mailtofanatikogame@gmail.com class=email-linkfanatikogame@gmail.coma
+            div
+
+            !-- Legal --
+            div class=section-labelLegal Documentsdiv
+            div class=links
+                a href=privacy.html class=btn
+                    spanPrivacy Policyspan
+                    span class=btn-arrow→span
+                a
+                a href=terms.html class=btn
+                    spanTerms of Usespan
+                    span class=btn-arrow→span
+                a
+            div
+
+            div class=footer
+                &copy; 2026 Fanatiko — All rights reserved.
+            div
+        div
+
+    div
+
+    div class=bottom-stripdiv
+
+body
+html
